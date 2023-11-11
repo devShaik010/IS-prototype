@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Login Page</title>
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function () {
+    // Code to run when the DOM is fully loaded
+
+    // Simulate a delay (you can replace this with your actual content loading logic)
+    setTimeout(function () {
+        // Hide the loader or perform any other actions
+        document.querySelector('.loader-container').style.display = 'none';
+    }, 2000); // Adjust the time as needed
+});
+
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+
+        .login-container {
+            text-align: center;
+        }
+
+        .slide {
+            display: none;
+        }
+
+        .slide.active {
+            display: block;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group input {
+            padding: 15px;
+            /* width: calc(150% - 50px); Adjust the width as needed */
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            width: 20rem;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: large;
+            border-radius: 10px;
+            width: 80%;
+            background-color: #05c005;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #00cc00;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .loader-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: absolute;
+            z-index: 99999;
+            background-color: #fff;
+            height: 100%;
+            width: 100%;
+        }
+
+        .loader {
+            border: 16px solid #00ff00; /* Green color for the loader */
+            border-top: 16px solid #fff; /* Background color of the body */
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    
+.loader-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    position: absolute;
+    z-index: 99999;
+    background-color: #fff;
+    height: 100%;
+    width: 100%;
+}
+
+.loader {
+    border: 12px solid #05c005; /* Green color for the loader */
+    border-top: 12px solid #ffff; /* Background color of the body */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <div class="login-container">
+        <div class="slide active" id="slide1">
+            <img src="./svg/user.png" alt="" width="20%">
+            <h1>Login</h1>
+            <div class="input-group">
+                <input type="text" placeholder="Enter Name">
+            </div>
+            <div class="input-group">
+                <input type="tel" placeholder="+91 Enter Number">
+            </div>
+            <button onclick="showSlide('slide2')">Continue</button>
+        </div>
+
+        <div class="slide" id="slide2">
+            <h2>Confirm Pin</h2>
+            <div class="input-group">
+                <input type="number" placeholder="Pin">
+            </div>
+            <button onclick="showSlide('slide3')">Get Started</button>
+        </div>
+    </div>
+
+    <script>
+        function showSlide(slideId) {
+            document.querySelector('.slide.active').classList.remove('active');
+            document.getElementById(slideId).classList.add('active');
+        }
+
+    </script>
+</body>
+</html>
