@@ -1,19 +1,57 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="{% static './CSS/main.css' %}">
+    <link rel="stylesheet" href="main.css">
     <title>IS SCRAP ZONE</title>
-  
-    </script>
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        // Code to run when the DOM is ready
+
+        // Show logo and copyright text for 3 seconds
+        setTimeout(function () {
+            document.getElementById('logo').classList.add('fade-out');
+            document.getElementById('copyright').classList.add('fade-out');
+
+            // Hide logo and copyright after an additional 3 seconds (adjust as needed)
+            setTimeout(function () {
+                document.getElementById('loader').style.display = 'none';
+            }, 3000);
+        }, 2000);
+    });
+</script>
+
 </head>
 <body>
+    <!-- -------Loader animation------ -->
+ <div id="loader">
+        <img id="logo" src="./svg/2.svg" alt="Your Logo">
+    </div>
+    <div id="copyright">
+        <p>All rights reserved &copy; IS Scrap Zone 2023</p>
+    </div>
+
+    <!-- -------Loader animation------ -->
+    <div class="container">
+        <div>
+            <img src="./svg/2.svg" alt="$" >
+            <div id="cont">
+                    <h1>IS SCRAP ZONE</h1>
+                    <p>Iqbal & Sons old scrap dealers Get best price of west.</p>
+            </div>
+        </div>
+        <div id="lang">
+            Select app language
+        </div>
+        <div class="lang_c">
+            <a href="signup.html" class="l">English</a>
+            <a href="#" class="l">తెలుగు</a>
+            <a href="#" class="l">हिंदी</a>
+        </div>
+     </div>
     
-    {% block content %}{% endblock %}
-    
-<script src="{% static './JS/script.js' %}" defer></script>         
+<script src="main.js" defer></script>         
 </body>
 </html>
  
