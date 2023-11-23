@@ -18,7 +18,10 @@
 
     </script>
     <style>
-        body {
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@300&display=swap');
+
+    body {    font-family: 'Noto Sans Display', sans-serif;
+
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
@@ -29,90 +32,41 @@
             min-height: 80vh;
         }
 
-        .login-container {
-            text-align: center;
+        .login-container
+        {
+            padding: 10px;
         }
-
-        .slide {
-            display: none;
-        }
-
-        .slide.active {
-            display: block;
-            animation: slideIn 0.5s ease-in-out;
-        }
-
-        .input-group {
-            margin-bottom: 15px;
-        }
-
-        .input-group input {
-            padding: 15px;
-            /* width: calc(150% - 50px); Adjust the width as needed */
-            box-sizing: border-box;
-            margin-bottom: 10px;
+        .input-group input
+        {
+            border: 0.5px solid rgb(0, 255, 64);
+            padding: 20px;
+            margin: 2%;
             border-radius: 10px;
-            width: 20rem;
-        }
-
-        button {
-            padding: 10px 20px;
             font-size: large;
-            border-radius: 10px;
-            width: 80%;
-            background-color: #05c005;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            font-family: 'Times New Roman', Times, serif;
+            width: 90%;
         }
-
-        button:hover {
-            background-color: #00cc00;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .loader-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            position: absolute;
-            z-index: 99999;
-            background-color: #fff;
-            height: 100%;
+       
+        .btn
+        {
             width: 100%;
+            padding: 10px;
+            align-items: center;
+            margin-left: 5%;
+            background-color: rgb(30, 255, 0);
+            border: 0.5PX solid rgb(30, 255, 0);
+            border-radius: 10px;
+            font-size: large;
+            margin-top:10px ;
         }
-
-        .loader {
-            border: 16px solid #00ff00; /* Green color for the loader */
-            border-top: 16px solid #fff; /* Background color of the body */
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            animation: spin 1s linear infinite;
+        .sm
+        {
+            font-size: x-small;
+            color: green;
+            text-align: center;
+            padding-bottom: 50px;
         }
-
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-    
-.loader-container {
+        .loader-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -141,7 +95,6 @@
         transform: rotate(360deg);
     }
 }
-
     </style>
 </head>
 <body>
@@ -150,8 +103,9 @@
     </div>
 
     <div class="login-container">
+        <form >
         <div class="slide active" id="slide1">
-            <img src="./svg/user.png" alt="" width="20%">
+            <img src="{% static './images./svg/user.png' %}" alt="" width="20%">
             <h1>Login</h1>
             <div class="input-group">
                 <input type="text" placeholder="Enter Name">
@@ -159,24 +113,18 @@
             <div class="input-group">
                 <input type="tel" placeholder="+91 Enter Number">
             </div>
-            <button onclick="showSlide('slide2')">Continue</button>
+            <div hidden class="input-group">
+                <input type="tel" placeholder="Enter OTP">
+                <p class="sm">Enter otp ,(Check whatsapp)</p>
+            </div>
+            <a href="home.html">
+            <input class="btn" value="submit">
+            </a>
         </div>
 
-        <div class="slide" id="slide2">
-            <h2>Confirm Pin</h2>
-            <div class="input-group">
-                <input type="number" placeholder="Pin">
-            </div>
-            <button onclick="showSlide('slide3')">Get Started</button>
-        </div>
+        </form>
     </div>
 
-    <script>
-        function showSlide(slideId) {
-            document.querySelector('.slide.active').classList.remove('active');
-            document.getElementById(slideId).classList.add('active');
-        }
-
-    </script>
+ 
 </body>
 </html>
