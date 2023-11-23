@@ -3,55 +3,307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="main.css">
     <title>IS SCRAP ZONE</title>
-    <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function () {
-        // Code to run when the DOM is ready
+  
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@300&display=swap');
 
-        // Show logo and copyright text for 3 seconds
-        setTimeout(function () {
-            document.getElementById('logo').classList.add('fade-out');
-            document.getElementById('copyright').classList.add('fade-out');
+ 
+	.logo
+	{
+		border-radius: 30px;
+		filter: brightness(110%);
+		width: 250px;
+		margin-top: 50%;
+	}
+    /* Main menu positionning */
+.main-nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    background: #FFF;
+    opacity: 0;
+    z-index: -1;
+    visibility: hidden;
+    transition: all .375s;
+}
 
-            // Hide logo and copyright after an additional 3 seconds (adjust as needed)
-            setTimeout(function () {
-                document.getElementById('loader').style.display = 'none';
-            }, 3000);
-        }, 2000);
-    });
-</script>
+.main-nav.is-open {
+    opacity: 1;
+    z-index: 100;
+    visibility: visible;
+}
 
+/* Yellow band effect */
+.main-nav::before {
+	 content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: -15px;
+    background: #05c005;
+    transform-origin: 0 0;
+    transform: skew(-14deg) translateX(-120%);
+    transition: all .275s .1s;
+    border-radius: 3%;
+}
+
+.main-nav.is-open::before {
+    transform: skew(-14deg) translateX(0);
+}
+
+/* Skewing effect on menu links */
+.main-nav ul {
+    display: inline-flex;
+    flex-direction: column;
+    height: 93%; /* Should be 100%, but we have a notice message :D */
+    align-items: flex-end;
+    justify-content: center;
+    transform: translateX(-18%) skew(-16deg);
+}
+
+.main-nav li {
+    display: block;
+    margin: .5rem 0;
+    text-align: right;
+    transform: skew(16deg);
+}
+
+/* Apparition effect on links */
+.main-nav a {
+    opacity: 0;
+    transform: translateY(-10px);
+
+}
+
+.main-nav.is-open a {
+    opacity: 1;
+    transform: translateY(0);
+}
+.main-nav li:nth-child(1) a {
+	transition: all 275ms 175ms
+}
+.main-nav li:nth-child(2) a {
+	transition: all 275ms 225ms
+}
+.main-nav li:nth-child(3) a {
+	transition: all 275ms 275ms
+}
+.main-nav li:nth-child(4) a {
+	transition: all 275ms 325ms
+}
+.main-nav li:nth-child(5) a {
+	transition: all 275ms 375ms
+}
+
+
+/* Decoration */
+.main-nav ul,
+.main-nav li {
+	list-style: none;
+	padding: 0;
+}
+.main-nav a {
+	display: block;
+	padding: 12px 0;
+	color: #ffffff;
+	font-size: 1.4em;
+	text-decoration: none;
+	font-weight: bold;
+
+}
+
+/* Burger Style: @see: https://codepen.io/CreativeJuiz/full/oMZNXy */
+.open-main-nav {
+	position: absolute;
+	top: 15px;
+	padding-top: 20px;
+	right: 15px;
+	z-index: 1000;
+	background: none;
+	border: 0;
+	cursor: pointer;
+}
+.open-main-nav:focus {
+	outline: none;
+}
+.burger {
+	position: relative;
+	display: block;
+	width: 28px;
+	height: 4px;
+	margin: 0 auto;
+	background: #5A3B5D;
+	transform: skew(5deg);
+	transition: all .275s;
+}
+
+.burger:after,
+.burger:before {
+	content: '';
+	display: block;
+	height: 100%;
+	background: #5A3B5D;
+	transition: all .275s;
+}
+
+.burger:after {
+	transform: translateY(-12px) translateX(-2px) skew(-20deg);
+}
+
+.burger:before {
+	transform: translateY(-16px) skew(-10deg);
+}
+
+/* Toggle State part */
+.is-open .burger {
+	transform: skew(5deg) translateY(-8px) rotate(-45deg);
+}
+
+.is-open .burger:before {
+	transform: translateY(0px) skew(-10deg) rotate(75deg);
+}
+
+.is-open .burger:after {
+	transform: translateY(-12px) translateX(10px) skew(-20deg);
+    opacity: 0;
+}
+
+/* MENU Text part */
+
+.burger-text {
+	display: block;
+	font-size: .675rem;
+	letter-spacing: .05em;
+	margin-top: .5em;
+	text-transform: uppercase;
+	font-weight: 500;
+	text-align: center;
+	color: #5A3B5D;
+}
+
+.container {
+	position: absolute;
+	top: 0; right: 0;
+	bottom: 0; left: 0;
+	overflow: hidden;
+	/* background: linear-gradient(to bottom, #eee, #ddd); */
+}
+
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Noto Sans Display', sans-serif;
+}
+
+
+/* Notice */
+.notice {
+	position: absolute;
+	bottom: -15px;
+	left: 0; right: 0;
+	padding: 20px;
+	background: #F2F2F2;
+	color: #5A3B5D;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.5;
+	z-index: 100;
+	text-align: center;
+}
+.notice strong {
+	font-weight: 700;
+}
+.notice a {
+	padding: 2px 3px;
+	background: #05c005;
+	text-decoration: none;
+}
+.box
+{
+	margin-left: 20px;
+}
+  </style>
 </head>
 <body>
-    <!-- -------Loader animation------ -->
- <div id="loader">
-        <img id="logo" src="./svg/2.svg" alt="Your Logo">
-    </div>
-    <div id="copyright">
-        <p>All rights reserved &copy; IS Scrap Zone 2023</p>
-    </div>
 
-    <!-- -------Loader animation------ -->
     <div class="container">
-        <div>
-            <img src="./svg/2.svg" alt="$" >
-            <div id="cont">
-                    <h1>IS SCRAP ZONE</h1>
-                    <p>Iqbal & Sons old scrap dealers Get best price of west.</p>
-            </div>
-        </div>
-        <div id="lang">
-            Select app language
-        </div>
-        <div class="lang_c">
-            <a href="signup.html" class="l">English</a>
-            <a href="#" class="l">తెలుగు</a>
-            <a href="#" class="l">हिंदी</a>
-        </div>
-     </div>
+      <button id="burger" class="open-main-nav">
+        <span class="burger"></span>
+        <span class="burger-text">Menu</span>
+      </button>
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li>
+            <a href="#">Todays Rate</a>
+          </li>
+          <li>
+            <a href="#">Sell Scrap</a>
+          </li>
+          <li>
+            <a href="#">Stores</a>
+          </li>
+          <li>
+            <a href="#">Contact</a>
+          </li>
+          <li>
+            <a href="#">Donat 💖</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="box">
+		  <h1>Old Scrap</h1>
+        <p>
+        The conetent is coming Soon!
+        <br>
+        Imran Old Scrap
+      </p>
+	  <center>
+	  <img class="logo" src="./svg/logo.gif" alt="#">
+	  <h3>Developer : Shaik Abrar</h3>
+	</center>
+      </div>
+    </div>
     
-<script src="main.js" defer></script>         
+<script >
+  let burger = document.getElementById('burger'),
+	 nav    = document.getElementById('main-nav'),
+	 slowmo = document.getElementById('slowmo');
+
+burger.addEventListener('click', function(e){
+	this.classList.toggle('is-open');
+	nav.classList.toggle('is-open');
+});
+
+slowmo.addEventListener('click', function(e){
+	this.classList.toggle('is-slowmo');
+});
+
+/* Onload demo - dirty timeout */
+let clickEvent = new Event('click');
+
+window.addEventListener('load', function(e) {
+	slowmo.dispatchEvent(clickEvent);
+	burger.dispatchEvent(clickEvent);
+	
+	setTimeout(function(){
+		burger.dispatchEvent(clickEvent);
+		
+		setTimeout(function(){
+			slowmo.dispatchEvent(clickEvent);
+		}, 3500);
+	}, 5500);
+});
+</script>         
 </body>
 </html>
  
